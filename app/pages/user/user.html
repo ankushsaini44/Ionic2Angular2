@@ -6,7 +6,14 @@
 
 <ion-content padding class="user">
   <h2>User</h2>
-  <sign-up-form> </sign-up-form>
+  <button class="sign-up" (click)="displaySignUpForm()">Sign Up</button>
+  <button class="login" (click)="displayLoginForm()">Login</button>
+  <br>
+  <h3>{{setForm}}</h3>
+  <login-form> </login-form>
+  <sign-up-form></sign-up-form>
+  <br>
+  <div id = 'form'> </div>
   <p>
     This page will be used to login and signup users
   </p>

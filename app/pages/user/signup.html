@@ -1,12 +1,3 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>
-            Sign Up
-        </ion-title>
-    </ion-navbar>
-</ion-header>
-
-<ion-content class="home" padding>
     <form [ngFormModel]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
 
         <ion-item [class.error]="!username.valid && username.touched">
@@ -57,4 +48,3 @@
 
         <button type="submit" class="custom-button" [disabled]="!signUpForm.valid" block>Submit</button>
     </form>
-</ion-content>

@@ -3,7 +3,6 @@ import {FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl
 import {NavController} from 'ionic-angular';
 import {User} from '../../models/user_model';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import {Observable, Subscriber } from 'rxjs/Rx';
 import '../../../node_modules/rxjs/Rx'
 
 
@@ -23,7 +22,7 @@ export class LoginForm {
     res: any;
     loggedin: any;
 
-    constructor(private navController: NavController, private fb: FormBuilder, private http: Http, private loginService: User) {
+    constructor(private navController: NavController, private fb: FormBuilder, private http: Http) {
 
         this.userForm = fb.group({
             'username': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
@@ -55,7 +54,4 @@ export class LoginForm {
           console.log(this.res)
         }
     }
-    logIn() {
-        this.loginService.setData({ attr: 'true' });
-      }
 }

@@ -3,7 +3,6 @@ import {FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl
 import {NavController} from 'ionic-angular';
 import {User} from '../../models/user_model';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import {Observable, Subscriber } from 'rxjs/Rx';
 import '../../../node_modules/rxjs/Rx'
 
 
@@ -43,13 +42,13 @@ export class SignUpForm {
           this.postValue = JSON.stringify(value)
           this.postJSON = JSON.parse(this.postValue)
 
-          var body = {"user" : {"username" : this.postJSON.username, "password" : this.postJSON.password, "name" : this.postJSON.email}}
+          var body = {"user" : {"username" : this.postJSON.username, "password" : this.postJSON.password, "email" : this.postJSON.email, "password_confirmation" : this.postJSON.confirmPassword}}
           var headers = new Headers();
 
           headers.append('Content-Type', 'application/json');
 
           this.http
-          .post('http://www.localhost:3000/api/v1/users.json',
+          .post('http://localhost:3000/api/v1/users.json',
             body, {
               headers: headers
             })
@@ -57,7 +56,15 @@ export class SignUpForm {
           .subscribe(
             data => this.res = data
             )
-          console.log(this.res)
+            if(this.res.status == '201') {
+              console.log(this.res.status)
+              /** pull the sign up form off and show the login screen */
+              /** display login screen */
+            }
+            else {
+              /** keep the sign up form up and display the error */
+              console.log(this.res.status)
         }
+      }
     }
 }
