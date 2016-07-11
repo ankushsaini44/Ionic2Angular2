@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Sign Up
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="home" padding>
+    <form [ngFormModel]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+
+        <ion-item [class.error]="!username.valid && username.touched">
+            <ion-label floating>New Username</ion-label>
+            <ion-input type="text" value="" [ngFormControl]="username"></ion-input>
+        </ion-item>
+
+        <div *ngIf="username.hasError('required') && username.touched"
+            class="error-box">* Username is required!</div>
+        <div *ngIf="username.hasError('minlength') && username.touched"
+            class="error-box">* Minimum username length is 8!</div>
+        <div *ngIf="username.hasError('checkFirstCharacterValidator') && username.touched"
+            class="error-box">* Username cant't start with number!</div>
+
+        <ion-item [class.error]="!email.valid && email.touched">
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" value="" [ngFormControl]="email"></ion-input>
+        </ion-item>
+
+        <div *ngIf="email.hasError('required') && username.touched"
+            class="error-box">* email is required!</div>
+
+        <ion-item [class.error]="!password.valid && password.touched">
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" value="" [ngFormControl]="password" ></ion-input>
+        </ion-item>
+
+        <div *ngIf="password.hasError('required') && password.touched"
+            class="error-box">* Password is required</div>
+        <div *ngIf="password.hasError('minlength') && password.touched"
+            class="error-box">* Minimum password length is 8!</div>
+        <div *ngIf="password.hasError('checkFirstCharacterValidator') && password.touched"
+            class="error-box">* Password cant't start with number!</div>
+        <br/><br/>
+
+        <ion-item [class.error]="!confirmPassword.valid && confirmPassword.touched">
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input type="confirmPassword" value="" [ngFormControl]="confirmPassword" ></ion-input>
+        </ion-item>
+
+        <div *ngIf="confirmPassword.hasError('required') && confirmPassword.touched"
+            class="error-box">* confirmPassword is required</div>
+        <div *ngIf="confirmPassword.hasError('minlength') && confirmPassword.touched"
+            class="error-box">* Minimum password length is 8!</div>
+        <div *ngIf="confirmPassword.hasError('checkFirstCharacterValidator') && confirmPassword.touched"
+            class="error-box">* Password cant't start with number!</div>
+        <br/><br/>
+
+        <button type="submit" class="custom-button" [disabled]="!signUpForm.valid" block>Submit</button>
+    </form>
+</ion-content>
